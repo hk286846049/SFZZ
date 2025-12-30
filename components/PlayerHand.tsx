@@ -6,12 +6,11 @@ interface PlayerHandProps {
   hand: Card[];
   selectedCards: string[];
   onToggleCard: (card: Card) => void;
-  onMashCard: (card: Card) => void;
   disabled: boolean;
 }
 
 export const PlayerHand: React.FC<PlayerHandProps> = ({ 
-  hand, selectedCards, onToggleCard, onMashCard, disabled 
+  hand, selectedCards, onToggleCard, disabled 
 }) => {
   
   // Group cards by type for better UX
@@ -30,8 +29,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
         {Object.entries(groupedCards).map(([type, cards]) => {
           if (cards.length === 0) return null;
           return (
-            // Changed from -space-x-8 hover:space-x-1 to -space-x-4 hover:-space-x-3
-            // This prevents the layout from changing drastically and causing flickering (wrap/reflow)
             <div key={type} className="flex -space-x-4 hover:-space-x-3 transition-all duration-300">
               {cards.map(card => (
                 <CardItem 
@@ -39,7 +36,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
                   card={card} 
                   selected={selectedCards.includes(card.id)}
                   onClick={() => onToggleCard(card)}
-                  onMash={(e) => onMashCard(card)}
                 />
               ))}
             </div>

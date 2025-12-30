@@ -16,3 +16,4 @@ export const MASH_PROBABILITIES = {
 };
 
 export const AI_DELAY_MS = 1200;
+export const MASH_COOLDOWN_MS = 3000;

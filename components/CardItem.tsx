@@ -7,10 +7,9 @@ interface CardItemProps {
   selected?: boolean;
   onClick?: () => void;
   small?: boolean;
-  onMash?: (e: React.MouseEvent) => void;
 }
 
-export const CardItem: React.FC<CardItemProps> = ({ card, selected, onClick, small, onMash }) => {
+export const CardItem: React.FC<CardItemProps> = ({ card, selected, onClick, small }) => {
   const config = RESOURCE_CONFIG[card.type];
   const sizeClasses = small 
     ? "w-10 h-14 text-xs" 
@@ -29,19 +28,6 @@ export const CardItem: React.FC<CardItemProps> = ({ card, selected, onClick, sma
     >
       <div className="font-bold">{card.level}</div>
       <div className="text-lg sm:text-2xl">{config.icon}</div>
-      
-      {!small && onMash && (
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onMash(e);
-          }}
-          className="absolute -top-2 -right-2 bg-purple-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center hover:bg-purple-500 shadow-sm z-10"
-          title="搓牌 (出千)"
-        >
-          🎲
-        </button>
-      )}
     </div>
   );
 };
